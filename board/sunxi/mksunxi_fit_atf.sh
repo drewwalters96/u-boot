@@ -37,8 +37,8 @@ cat << __HEADER_EOF
 			arch = "arm64";
 			os = "arm-trusted-firmware";
 			compression = "none";
-			load = <0x44000>;
-			entry = <0x44000>;
+			load = <0x4c000>;
+			entry = <0x4c000>;
 		};
 __HEADER_EOF
 
