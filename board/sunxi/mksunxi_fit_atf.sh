@@ -21,19 +21,21 @@ cat << __HEADER_EOF
 	#address-cells = <1>;
 
 	images {
-		uboot@1 {
+		uboot {
 			description = "U-Boot (64-bit)";
 			data = /incbin/("u-boot-nodtb.bin");
 			type = "standalone";
 			arch = "arm64";
+			os = "u-boot";
 			compression = "none";
 			load = <0x4a000000>;
 		};
-		atf@1 {
+		atf {
 			description = "ARM Trusted Firmware";
 			data = /incbin/("$BL31");
 			type = "firmware";
 			arch = "arm64";
+			os = "arm-trusted-firmware";
 			compression = "none";
 			load = <0x44000>;
 			entry = <0x44000>;
@@ -67,8 +69,8 @@ do
 	cat << __CONF_SECTION_EOF
 		config@$cnt {
 			description = "$(basename $dtname .dtb)";
-			firmware = "uboot@1";
-			loadables = "atf@1";
+			firmware = "atf";
+			loadables = "uboot";
 			fdt = "fdt@$cnt";
 		};
 __CONF_SECTION_EOF
